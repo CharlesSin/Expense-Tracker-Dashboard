@@ -18,6 +18,10 @@ app.use(cors());
 // routes
 app.use("/api/v1", transactionsRouter);
 
+app.get("/", (req, res, next) => {
+  res.send("This is Expense Tracker Backend Service");
+});
+
 const server = () => {
   mongodb();
   app.listen(PORT, () => {
