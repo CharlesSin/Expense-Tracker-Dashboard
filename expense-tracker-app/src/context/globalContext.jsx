@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 
-const BASE_URL = "https://expense-tracker-dashboard.vercel.app/api/v1/";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const GlobalContext = React.createContext();
 
