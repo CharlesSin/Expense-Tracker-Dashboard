@@ -101,7 +101,7 @@ function IncomeItem({ id, title, amount, date, category, description, deleteItem
               {description}
             </p>
           </div>
-          <div className="btn-con">
+          <div className="btn-con hidden">
             <Button
               icon={trash}
               bPad={"1rem"}
@@ -183,6 +183,10 @@ const IncomeItemStyled = styled.div`
           opacity: 0.8;
         }
       }
+    }
+
+    .hidden {
+      display: none;
     }
   }
 `;
