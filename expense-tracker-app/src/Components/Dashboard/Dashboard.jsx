@@ -7,7 +7,7 @@ import Chart from "../Chart/Chart";
 import BarChart from "../BarChart/BarChart";
 
 function Dashboard() {
-  const { totalExpenses, incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext();
+  const { totalExpenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext();
 
   useEffect(() => {
     getIncomes();
@@ -45,9 +45,18 @@ function Dashboard() {
                 </p>
               </div>
             </div>
-            <Chart />
+            <Chart dataYear="2023" />
             <div className="margin-2"></div>
-            <BarChart />
+            <Chart dataYear="2022" />
+            <div className="margin-2"></div>
+            <Chart dataYear="2021" />
+            <div className="margin-2"></div>
+            <BarChart dataYear="2023" />
+            <div className="margin-2"></div>
+            <BarChart dataYear="2022" />
+            <div className="margin-2"></div>
+            <BarChart dataYear="2021" />
+            <div className="margin-2"></div>
           </div>
         </div>
       </InnerLayout>

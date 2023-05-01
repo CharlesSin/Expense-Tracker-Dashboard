@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import devices from "./device";
 
 export const MainLayout = styled.div`
   padding: 2rem;

@@ -70,6 +70,7 @@ function ExpenseForm() {
           <option value="Health">Health</option>
           <option value="House">House</option>
           <option value="Other">Other</option>
+          <option value="Shopping">Shopping</option>
           <option value="Travel">Travel</option>
         </select>
       </div>

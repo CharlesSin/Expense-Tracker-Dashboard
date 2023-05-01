@@ -22,7 +22,6 @@ function History() {
               }}>
               {title}
             </p>
-
             <p
               style={{
                 color: type === "expense" ? "red" : "var(--color-green)",

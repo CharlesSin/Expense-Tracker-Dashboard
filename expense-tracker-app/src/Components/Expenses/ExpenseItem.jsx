@@ -28,7 +28,7 @@ import {
 } from "../../utils/Icons";
 import Button from "../Button/Button";
 
-function IncomeItem({ id, title, amount, date, category, description, deleteItem, indicatorColor, type }) {
+function ExpenseItem({ id, title, amount, date, category, description, deleteItem, indicatorColor, type }) {
   const categoryIcon = () => {
     switch (category) {
       case "Business":
@@ -84,7 +84,7 @@ function IncomeItem({ id, title, amount, date, category, description, deleteItem
   };
 
   return (
-    <IncomeItemStyled indicator={indicatorColor}>
+    <ExpenseItemStyled indicator={indicatorColor}>
       <div className="icon">{type === "expense" ? expenseCatIcon() : categoryIcon()}</div>
       <div className="content">
         <h5>{title}</h5>
@@ -101,7 +101,7 @@ function IncomeItem({ id, title, amount, date, category, description, deleteItem
               {description}
             </p>
           </div>
-          <div className="btn-con">
+          <div className="btn-con hidden">
             <Button
               icon={trash}
               bPad={"1rem"}
@@ -115,11 +115,11 @@ function IncomeItem({ id, title, amount, date, category, description, deleteItem
           </div>
         </div>
       </div>
-    </IncomeItemStyled>
+    </ExpenseItemStyled>
   );
 }
 
-const IncomeItemStyled = styled.div`
+const ExpenseItemStyled = styled.div`
   background: #fcf6f9;
   border: 2px solid #ffffff;
   box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
@@ -184,7 +184,11 @@ const IncomeItemStyled = styled.div`
         }
       }
     }
+    .hidden {
+      display: none;
+      opacity: 0;
+    }
   }
 `;
 
-export default IncomeItem;
+export default ExpenseItem;

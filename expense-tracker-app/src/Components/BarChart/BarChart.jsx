@@ -3,16 +3,20 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from "react-chartjs-2";
 import styled from "styled-components";
 import { useGlobalContext } from "../../context/globalContext";
-import { monthFormat } from "../../utils/monthFormat";
+import monthFormat from "../../utils/monthFormat";
+import monthlyArray from "../../utils/monthlyArray";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-function BarChart() {
+function BarChart({ dataYear }) {
   const { incomes, expenses } = useGlobalContext();
+  const incomeByYear = incomes.filter((item) => monthFormat(item.date).includes(dataYear));
+  const expensesByYear = expenses.filter((item) => monthFormat(item.date).includes(dataYear));
+  const MONTHS = monthlyArray(dataYear);
 
   let chartData = [];
   if (Object.entries(expenses).length > 0) {
-    const expenseData = Object.entries(expenses);
+    const expenseData = Object.entries(expensesByYear);
     // this gives an object with dates as keys
     const groups = expenseData.reduce((groups, expense) => {
       const date = monthFormat(expense[1].date);
@@ -31,7 +35,7 @@ function BarChart() {
       return { date, total };
     });
 
-    incomes.map((data) => {
+    incomeByYear.map((data) => {
       const { date, amount } = data;
       const month = monthFormat(date);
       expenseGroupArrays.map((item) => {
@@ -40,6 +44,10 @@ function BarChart() {
           chartData.push({ date: month, amount, total });
         }
       });
+    });
+
+    chartData = chartData.sort((a, b) => {
+      return MONTHS.indexOf(a.date) - MONTHS.indexOf(b.date);
     });
   }
 

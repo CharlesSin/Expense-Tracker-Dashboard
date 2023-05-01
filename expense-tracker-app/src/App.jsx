@@ -9,12 +9,12 @@ import Income from "./Components/Income/Income";
 import Expenses from "./Components/Expenses/Expenses";
 import Transactions from "./Components/Transactions/Transactions";
 import { useGlobalContext } from "./context/globalContext";
+import devices from "./styles/device";
 
 function App() {
   const [active, setActive] = useState(1);
 
   const global = useGlobalContext();
-  // console.log(global);
 
   const displayData = () => {
     switch (active) {
@@ -59,6 +59,12 @@ const AppStyled = styled.div`
     overflow-x: hidden;
     &::-webkit-scrollbar {
       width: 0;
+    }
+  }
+
+  @media ${devices.mobileM} {
+    main {
+      overflow: auto;
     }
   }
 `;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import avatar from "../../img/avatar.png";
 import { signout } from "../../utils/Icons";
 import { menuItems } from "../../utils/menuItems";
+import devices from "../../styles/device";
 
 function Navigation({ active, setActive }) {
   return (
@@ -104,6 +105,13 @@ const NavStyled = styled.nav`
       background: #222260;
       border-radius: 0 10px 10px 0;
     }
+  }
+
+  @media ${devices.mobileS} {
+    display: none;
+  }
+  @media ${devices.mobileM} {
+    display: none;
   }
 `;
 

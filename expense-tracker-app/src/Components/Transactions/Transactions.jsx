@@ -1,16 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../../context/globalContext";
 import History from "../../History/History";
 import { InnerLayout } from "../../styles/Layouts";
 
 function Transactions() {
-  const { totalExpenses, incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext();
-
-  useEffect(() => {
-    getIncomes();
-    getExpenses();
-  }, []);
+  const { incomes, expenses } = useGlobalContext();
 
   return (
     <TransactionsStyled>
@@ -18,7 +13,6 @@ function Transactions() {
         <h1>All Transactions</h1>
         <div className="stats-con">
           <div className="history-con">
-            
             <h2 className="salary-title">
               Min <span>Salary</span>Max
             </h2>
@@ -26,7 +20,7 @@ function Transactions() {
               <p>${Math.min(...incomes.map((item) => item.amount))}</p>
               <p>${Math.max(...incomes.map((item) => item.amount))}</p>
             </div>
-            
+
             <h2 className="salary-title">
               Min <span>Expense</span>Max
             </h2>
@@ -34,7 +28,7 @@ function Transactions() {
               <p>${Math.min(...expenses.map((item) => item.amount))}</p>
               <p>${Math.max(...expenses.map((item) => item.amount))}</p>
             </div>
-            
+
             <History />
           </div>
         </div>

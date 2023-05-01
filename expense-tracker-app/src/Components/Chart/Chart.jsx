@@ -4,16 +4,20 @@ import { Chart as ChartJs, CategoryScale, LinearScale, PointElement, LineElement
 import { Line } from "react-chartjs-2";
 import styled from "styled-components";
 import { useGlobalContext } from "../../context/globalContext";
-import { monthFormat } from "../../utils/monthFormat";
+import monthFormat from "../../utils/monthFormat";
+import monthlyArray from "../../utils/monthlyArray";
 
 ChartJs.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement);
 
-function Chart() {
+function Chart({ dataYear }) {
   const { incomes, expenses } = useGlobalContext();
+  const incomeByYear = incomes.filter((item) => monthFormat(item.date).includes(dataYear));
+  const expensesByYear = expenses.filter((item) => monthFormat(item.date).includes(dataYear));
+  const MONTHS = monthlyArray(dataYear);
 
   let chartData = [];
   if (Object.entries(expenses).length > 0) {
-    const expenseData = Object.entries(expenses);
+    const expenseData = Object.entries(expensesByYear);
     // this gives an object with dates as keys
     const groups = expenseData.reduce((groups, expense) => {
       const date = monthFormat(expense[1].date);
@@ -32,7 +36,7 @@ function Chart() {
       return { date, total };
     });
 
-    incomes.map((data) => {
+    incomeByYear.map((data) => {
       const { date, amount } = data;
       const month = monthFormat(date);
       expenseGroupArrays.map((item) => {
@@ -41,6 +45,10 @@ function Chart() {
           chartData.push({ date: month, amount, total });
         }
       });
+    });
+
+    chartData = chartData.sort((a, b) => {
+      return MONTHS.indexOf(a.date) - MONTHS.indexOf(b.date);
     });
   }
 
@@ -52,7 +60,7 @@ function Chart() {
       },
       title: {
         display: true,
-        text: "01/2021 - 04/2023",
+        text: `01/${dataYear} - ${incomeByYear.length >= 10 ? "" : 0}${incomeByYear.length}/${dataYear}`,
       },
     },
   };

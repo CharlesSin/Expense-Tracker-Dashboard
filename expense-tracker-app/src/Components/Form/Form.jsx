@@ -62,17 +62,12 @@ function Form() {
           </option>
           <option value="Business">Business</option>
           <option value="BankTransfer">Bank Transfer</option>
-          <option value="Deposits">Deposits</option>
           <option value="Extraincome">Extra Income</option>
-          <option value="Freelancing">Freelancing</option>
           <option value="Gifts">Gifts</option>
           <option value="Investments">Investments</option>
           <option value="Lottery">Lottery</option>
-          <option value="Other">Other</option>
-          <option value="RentalIncome">Rental Income</option>
           <option value="Salary">Salary</option>
           <option value="Savings">Savings</option>
-          <option value="Stocks">Stocks</option>
         </select>
       </div>
       <div className="input-control">
