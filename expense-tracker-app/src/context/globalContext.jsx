@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 
-const BASE_URL = `${import.meta.env.VITE_BASE_URL}api/v1/`;
+// const BASE_URL = `${import.meta.env.VITE_BASE_URL}api/v1/`;
+const BASE_URL = `http://localhost:5050/api/v1/`;
 
 const GlobalContext = React.createContext();
 
@@ -21,7 +22,8 @@ export const GlobalProvider = ({ children }) => {
   const getIncomes = async () => {
     const response = await axios.get(`${BASE_URL}get-incomes`);
     setIncomes(response.data);
-    console.log(response.data);
+    // console.log("getIncomes");
+    // console.log(response.data);
   };
 
   const deleteIncome = async (id) => {
@@ -49,7 +51,8 @@ export const GlobalProvider = ({ children }) => {
   const getExpenses = async () => {
     const response = await axios.get(`${BASE_URL}get-expenses`);
     setExpenses(response.data);
-    console.log(response.data);
+    // console.log("getExpenses");
+    // console.log(response.data);
   };
 
   const deleteExpense = async (id) => {
@@ -73,10 +76,10 @@ export const GlobalProvider = ({ children }) => {
   const transactionHistory = () => {
     const history = [...incomes, ...expenses];
     history.sort((a, b) => {
-      return new Date(b.createdAt) - new Date(a.createdAt);
+      return new Date(b.date) - new Date(a.date);
     });
 
-    return history.slice(0, 3);
+    return history.slice(0, 20);
   };
 
   return (

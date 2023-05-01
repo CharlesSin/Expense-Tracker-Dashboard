@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../context/globalContext";
+import { dateFormat } from "../utils/dateFormat";
 
 function History() {
   const { transactionHistory } = useGlobalContext();
@@ -11,9 +12,10 @@ function History() {
     <HistoryStyled>
       <h2>Recent History</h2>
       {history.map((item) => {
-        const { _id, title, amount, type } = item;
+        const { _id, title, date, amount, type } = item;
         return (
           <div key={_id} className="history-item">
+            <p>{dateFormat(date)}</p>
             <p
               style={{
                 color: type === "expense" ? "red" : "var(--color-green)",
@@ -25,7 +27,7 @@ function History() {
               style={{
                 color: type === "expense" ? "red" : "var(--color-green)",
               }}>
-              {type === "expense" ? `-${amount <= 0 ? 0 : amount}` : `+${amount <= 0 ? 0 : amount}`}
+              {type === "expense" ? `-${amount <= 0 ? 0 : `${amount}.00`}` : `+${amount <= 0 ? 0 : `${amount}.00`}`}
             </p>
           </div>
         );

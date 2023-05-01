@@ -60,14 +60,19 @@ function Form() {
           <option value="" disabled>
             Select Option
           </option>
-          <option value="salary">Salary</option>
-          <option value="freelancing">Freelancing</option>
-          <option value="investments">Investiments</option>
-          <option value="stocks">Stocks</option>
-          <option value="bitcoin">Bitcoin</option>
-          <option value="bank">Bank Transfer</option>
-          <option value="youtube">Youtube</option>
-          <option value="other">Other</option>
+          <option value="Business">Business</option>
+          <option value="BankTransfer">Bank Transfer</option>
+          <option value="Deposits">Deposits</option>
+          <option value="Extraincome">Extra Income</option>
+          <option value="Freelancing">Freelancing</option>
+          <option value="Gifts">Gifts</option>
+          <option value="Investments">Investments</option>
+          <option value="Lottery">Lottery</option>
+          <option value="Other">Other</option>
+          <option value="RentalIncome">Rental Income</option>
+          <option value="Salary">Salary</option>
+          <option value="Savings">Savings</option>
+          <option value="Stocks">Stocks</option>
         </select>
       </div>
       <div className="input-control">

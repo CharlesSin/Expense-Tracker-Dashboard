@@ -60,14 +60,17 @@ function ExpenseForm() {
           <option value="" disabled>
             Select Option
           </option>
-          <option value="education">Education</option>
-          <option value="groceries">Groceries</option>
-          <option value="health">Health</option>
-          <option value="subscriptions">Subscriptions</option>
-          <option value="takeaways">Takeaways</option>
-          <option value="clothing">Clothing</option>
-          <option value="travelling">Travelling</option>
-          <option value="other">Other</option>
+          <option value="Bills">Bills</option>
+          <option value="Clothes">Clothes</option>
+          <option value="Drink">Drink</option>
+          <option value="Education">Education</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Food">Food</option>
+          <option value="Groceries">Groceries</option>
+          <option value="Health">Health</option>
+          <option value="House">House</option>
+          <option value="Other">Other</option>
+          <option value="Travel">Travel</option>
         </select>
       </div>
       <div className="input-control">
@@ -129,4 +132,5 @@ const ExpenseFormStyled = styled.form`
     }
   }
 `;
+
 export default ExpenseForm;

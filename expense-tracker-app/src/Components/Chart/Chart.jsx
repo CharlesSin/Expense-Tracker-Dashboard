@@ -4,23 +4,69 @@ import { Chart as ChartJs, CategoryScale, LinearScale, PointElement, LineElement
 import { Line } from "react-chartjs-2";
 import styled from "styled-components";
 import { useGlobalContext } from "../../context/globalContext";
-import { dateFormat } from "../../utils/dateFormat";
+import { monthFormat } from "../../utils/monthFormat";
 
 ChartJs.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement);
 
 function Chart() {
   const { incomes, expenses } = useGlobalContext();
 
+  let chartData = [];
+  if (Object.entries(expenses).length > 0) {
+    const expenseData = Object.entries(expenses);
+    // this gives an object with dates as keys
+    const groups = expenseData.reduce((groups, expense) => {
+      const date = monthFormat(expense[1].date);
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(expense[1].amount);
+      return groups;
+    }, {});
+
+    // Edit: to add it in the array format instead
+    const expenseGroupArrays = Object.keys(groups).map((date) => {
+      const total = groups[date].reduce((cur, acc) => {
+        return (cur += acc);
+      }, 0);
+      return { date, total };
+    });
+
+    incomes.map((data) => {
+      const { date, amount } = data;
+      const month = monthFormat(date);
+      expenseGroupArrays.map((item) => {
+        const { date: expenseDate, total } = item;
+        if (expenseDate === month) {
+          chartData.push({ date: month, amount, total });
+        }
+      });
+    });
+  }
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "01/2021 - 04/2023",
+      },
+    },
+  };
+
   const data = {
-    labels: incomes.map((inc) => {
-      const { date } = inc;
-      return dateFormat(date);
+    labels: chartData.map((item) => {
+      const { date } = item;
+      return date;
     }),
     datasets: [
       {
         label: "Income",
         data: [
-          ...incomes.map((income) => {
+          ...chartData.map((income) => {
             const { amount } = income;
             return amount;
           }),
@@ -31,9 +77,9 @@ function Chart() {
       {
         label: "Expenses",
         data: [
-          ...expenses.map((expense) => {
-            const { amount } = expense;
-            return amount;
+          ...chartData.map((expense) => {
+            const { total } = expense;
+            return total;
           }),
         ],
         backgroundColor: "red",
@@ -44,7 +90,7 @@ function Chart() {
 
   return (
     <ChartStyled>
-      <Line data={data} />
+      <Line options={options} data={data} />
     </ChartStyled>
   );
 }

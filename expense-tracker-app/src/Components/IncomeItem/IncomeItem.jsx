@@ -71,7 +71,7 @@ function IncomeItem({ id, title, amount, date, category, description, deleteItem
     }
   };
 
-  console.log("type", type);
+  // console.log("type", type);
 
   return (
     <IncomeItemStyled indicator={indicatorColor}>
