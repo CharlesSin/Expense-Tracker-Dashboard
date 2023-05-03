@@ -12,9 +12,9 @@ export const GlobalProvider = ({ children }) => {
 
   //calculate Incomes
   const addIncome = async (income) => {
-    const response = await axios.post(`${BASE_URL}add-income`, income).catch((err) => {
-      setError(err.response.data.message);
-    });
+    // const response = await axios.post(`${BASE_URL}add-income`, income).catch((err) => {
+    //   setError(err.response.data.message);
+    // });
     getIncomes();
   };
 
@@ -39,9 +39,9 @@ export const GlobalProvider = ({ children }) => {
 
   // calculate Expense
   const addExpense = async (income) => {
-    const response = await axios.post(`${BASE_URL}add-expense`, income).catch((err) => {
-      setError(err.response.data.message);
-    });
+    // const response = await axios.post(`${BASE_URL}add-expense`, income).catch((err) => {
+    //   setError(err.response.data.message);
+    // });
     getExpenses();
   };
 
